@@ -1,0 +1,219 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --background-color:#E5E5E5;
+    --interface-color:#4623D2;
+    --error-message:red;
+    --success-message:rgb(30, 226, 30);
+    --border-radius:12.5px;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: var(--background-color);
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 50vh;
+}
+
+.login__form{
+    width: 400px;
+    padding:0 2rem;
+    border-radius: var(--border-radius);
+}
+.form__title{
+    margin-bottom: .5rem;
+    font-family: 'Raleway', sans-serif;
+}
+.sign__in{
+    margin-bottom:.5rem;
+    text-align: left;
+}
+.form__text{
+  text-align: center;
+}
+
+.image__container{
+    background-image: url('./images/image\ 1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+i{
+    color:rgb(59, 57, 57);
+}
+
+.error{
+     color: red;
+}
+.form__input{
+    display: block;
+    width: 100%;
+    padding: 0.75rem 3rem;
+    border-radius: var(--border-radius);
+    outline: none;
+    border: 2.5px solid rgba(0, 0, 0, 0.2);
+    background: rgb(248, 248, 248);
+    transition: background 0.2s border-color 0.2s;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    line-height: 26px;
+}
+.input__section{
+    margin-bottom: 2rem;
+}
+.form__input:focus{
+ border-color: var(--interface-color);
+ background: #fff;
+}
+.form__message,.email__error,.password__error{
+    text-align: center;
+    padding: .5rem 0;
+    margin-top: 5px;
+    display: none;
+    color: var(--error-message);
+    background-color: rgba(231, 139, 139,0.2);
+    border:1px solid #E5E5E5;
+}
+
+.pas-lock, .envelope-icon{
+    position: relative;
+}
+.email_check, .password_check{
+    color: var(--success-message);
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    display: none;
+}
+.email_exclamation, .password_exclamation{
+    color: var(--error-message);
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    display: none;
+}
+
+.lock, .envelope{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    /* bottom: 45.83%; */
+    /* font-weight: 100; */
+
+}
+.forgotten__pass{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    margin-bottom:2rem;
+}
+
+.login__btn{
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    outline: none;
+    border: none;
+    background-color: var(--interface-color);
+    box-shadow: 3.2px 16px 40px rgba(96, 57, 251, 0.3);
+    color: #fff;
+    cursor: pointer;
+}
+.login__btn:hover{
+    background: #270f8a;
+    /* color: var(--interface-color); */
+    transition: background 1s;
+}
+
+
+.link__text{
+    margin-top: 2rem;
+    text-align: left;
+}
+a{
+    text-decoration: underline;
+    color: var(--interface-color);
+}
+a:hover{
+    text-decoration: none;
+}
+@media screen and (max-width:1024px){
+    body{
+        font-size: 14px;
+    }
+    .login__form{
+        height: 100%;
+        z-index:2;
+        padding: 2rem;
+    }
+}
+@media screen and (max-width:812px){
+    body{
+        font-size: 13px;
+    }
+    .image__container{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        opacity: 1;
+        background-position: center;
+        z-index:1;
+
+    }
+    .login__form{
+        margin-top: 3.5rem;
+        width: 100%;
+        height: 120vh;
+        max-height: 150%;
+        z-index:2;
+        background-color: #fff;
+        padding: 2rem;
+        opacity: .9;
+        box-shadow: 3.2px 16px 40px 2px rgba(96, 57, 251, 0.3);
+        padding: 0.7rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    } 
+    .form__input{
+        padding: 0.5rem 3rem;
+    }
+    .form__message,.email__error,.password__error{
+        padding: .1rem 0;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form__text{
+        margin-top: 2rem;
+    }
+    .email_check, .password_check{
+        top: 15px;
+    }
+    .email_exclamation, .password_exclamation{
+        top: 15px;
+    }
+    
+    .lock, .envelope{
+        top: 15px;
+      
+    }
+    
+}
