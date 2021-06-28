@@ -42,6 +42,7 @@
               <i class="far fa-user-circle"></i>
               {% if request.user.is_authenticated %}
               <ul class="dropdown">
+                <li><a href="#">Hello, {{ request.user.username | capfirst }}</a></li>
                 <li><a href="{% url 'account_password_change' %}">Change Password</a></li>
                 <li id="id_logout"><a href="#">Log Out</a></li>
               </ul>

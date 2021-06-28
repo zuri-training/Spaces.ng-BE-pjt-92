@@ -3,4 +3,4 @@ from allauth.account.views import PasswordChangeView
 # Create your views here.
 
 class CustomPasswordChangeView(PasswordChangeView):
-    success_url = '/'
+    success_url = '/accounts/password/reset/key/done'
