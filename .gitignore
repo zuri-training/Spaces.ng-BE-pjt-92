@@ -1,2 +1,8 @@
 # Virtual Environments
 spaces_env/
+
+# # Text backup files
+*.bak
+
+# Database
+*.sqlite3
