@@ -6,3 +6,4 @@ spaces_env/
 
 # Database
 *.sqlite3
+spacesNg/db.sqlite3
