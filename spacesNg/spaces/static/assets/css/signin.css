@@ -625,6 +625,7 @@ input#reset-btn:hover {
 }
 .modal form {
   width: 80%;
+  flex-direction: column;
 }
 .modal form button {
   width: 100%;

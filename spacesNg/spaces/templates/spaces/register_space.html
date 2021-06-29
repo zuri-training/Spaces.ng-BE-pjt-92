@@ -1,0 +1,110 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}Register Your Space{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/css/spaceowner.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="main-wrap">
+    <div class="breadcrumb">
+      <ul>
+        <li><a href="{% url 'spaces:index' %}">Home</a></li>
+        <li><a href="">Do you have a space?</a></li>
+      </ul>
+    </div>
+    <div class="main">
+      <form action="#">
+        <h1>Do you have a space?</h1>
+        <h4>Submit your space for listing on our website</h4>
+        <section class="info">
+          <div class="basic-info">
+            <input type="text" placeholder="Name of space">
+            <textarea name="" id="" cols="30" rows="10" placeholder="Space description"></textarea>
+            <div class="facilities">
+              <h3>Facilities</h3>
+              <div class="checkbox-wrap">
+                <div class="checkbox-item">
+                  <input type="checkbox" name="waiting-room" id="waiting-room">
+                  <p>Waiting room</p>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" name="Parking" id="Parking">
+                  <p>Parking</p>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" name="wifi" id="wifi">
+                  <p>Wifi</p>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" name="whiteboard" id="whiteboard">
+                  <p>Whiteboard</p>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" name="flat-screen" id="flat-screen">
+                  <p>Flat Screen Tv</p>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" name="restuarant" id="restuarant">
+                  <p>Restuarant</p>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" name="Ensuite Kitchenette" id="Ensuite Kitchenette">
+                  <p>Waiting room</p>
+                </div>
+                
+              </div>
+              <div class="other-facilities">
+                <input type="text" id="other-facilities" placeholder="Other Facilities">
+                <button class="add">Add</button>
+              </div>
+              
+            </div>
+          </div>
+          <div class="other">
+            <div class="upload">
+              <div class="img-block">
+                <i class="fas fa-images"></i>
+              </div>
+              <button>Upload thumbnail</button>
+            </div>
+            <div class="select-item">
+              <label for="capacity">Space capacity</label>
+              <select name="capacity" id="capacity">
+                <option value="1-4">1-4</option>
+                <option value="5-9">5-9</option>
+                <option value="10-14">10-14</option>
+                <option value="15-19">15-19</option>
+                <option value="20-29">20-29</option>
+                <option value="30+">30+</option>
+              </select>
+            </div>
+            
+            <label for="price">Price</label>
+            <input type="text" placeholder="Price per hour(N)">
+            
+          </div>
+        </section>
+        <section class="contact-info">
+          <h2>Add Contact Information</h2>
+          <input type="text" placeholder="Add State">
+          <input type="text" placeholder="Add LGA">
+          <input type="text" placeholder="Add Street Address">
+          <input type="text" placeholder="Add Phone">
+          <input type="text" placeholder="Add Email">
+          Add Social Media Accounts
+          <input type="text" placeholder="Twitter">
+          <input type="text" placeholder="Instagram">
+          <input type="text" placeholder="Facebook">
+          <button id="submit"><a href="{% url 'spaces:register_space_done' %}">SUBMIT</a></button>
+        </section>
+        
+        
+      </form>
+    </div>
+  </div>
+{% endblock %}
+{% block domready %}
+<script src="{% static 'assets/js/index.js' %}"></script>
+<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+{% endblock %}

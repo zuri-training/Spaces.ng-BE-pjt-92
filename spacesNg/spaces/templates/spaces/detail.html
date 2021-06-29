@@ -1,0 +1,118 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}{{ space.name }}{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/spacedetails.css' %}" />
+<!-- <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" /> -->
+{% endblock %}
+{% block content %}
+<div class="space__details">
+    <div class="breadcrumbs__container">
+      <ul class="breadcrumbs">
+        <li class="breadcrumbs__item">
+          <a href="{% url 'spaces:index' %}" class="breadcrumbs__link">Home</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a href="{% url 'spaces:search' %}?state={{ space.state }}" class="breadcrumbs__link">{{ space.state }}</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a href="{% url 'spaces:search' %}?state={{ space.state }}&lga={{ space.lga }}" class="breadcrumbs__link">Workspaces in {{ space.lga }}</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a href="#" class="breadcrumbs__link breadcrumbs__link--active"
+            >{{ space.name }}</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="space__details__container">
+        <div class="space__details__image__container">
+            <div class="space__details__image">
+                <h4 class="space__details__caption">
+                    {{ space.name }}
+                </h4>
+                <img src="{{ space.image.url }}" alt="" >
+            </div>
+        </div>   
+        <div class="space__details__spaces">
+            <div class="space__details__spaces__text">
+              <h4 class="space__details__caption">
+                {{ space.name }}
+            </h4>
+                <p class="space__details__spaces__text-content">
+                   {{ space.description }}
+                </p>
+
+                 <h5>Ratings</h5>
+                 <div class="space__details__spaces__rating-container"> <h3>{{ space.rating }}
+                     <i class="fas fa-star"></i>
+                     </h3>
+                 </div>
+            </div>
+            
+            <div class="space__details__spaces__location">
+               
+                <div class="space__details__spaces__location-container">
+                    <h4 class="space__details__spaces__location-heading">Contact Details</h4>
+                    <div class="space__details__space__contacts">  
+                        <p class="space__details__spaces__street" id="space-street">
+                          <i class="fa fa-map-marker" aria-hidden="true"></i>
+                           <span>{{ space.address }}, {{ space.lga }}, {{ space.state }}, Nigeria</span> </p>
+                          <p class="space-phone" ><i class="fas fa-phone-alt"></i> <a href="#" id="space-phone" >{{ space.telephone }}</a> </p>
+                        <p class="space-email"><i class="fas fa-envelope"></i><a href="#" id="space-email">{{ space.email }}</a> </p>
+                       
+                      <p class="app"><i class="fab fa-instagram"></i><a href="#" id="space-instagram">{{ space.instagram }}</a></p>
+                      <p class="app"><i class="fab fa-facebook"></i> <a href="#" id="space-fb">{{ space.facebook }}</a> </p>
+                      <p class="app"><i class="fab fa-twitter"></i><a href="#" id="space-twitter">{{ space.twitter }}</a> </p>
+                    </div>
+                    
+                </div>
+            </div>
+              <!--  -->
+               
+            
+              <!--  -->
+
+        </div> 
+        <div class="space__details__facilities">
+          <div class="space__details__facilities-container">
+            <div class="space__details__facilities-text">
+              <h4>Facilities:</h4>
+              <div>
+                <ul>
+                    {% for facility in space.facilities.all %}
+                  <li>{{ facility }}</li> 
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="space__details__facilities-second">
+
+              <div class="table__row">
+                <div class="table__column" >
+                  <h2>Capacity:</h2>
+                  <p>{{ space.capacity }}</p>
+                </div>
+                <div class="table__column">
+                  <h2>Price per hour:</h2>
+                  <p>N{{ space.pricing }}</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="space__details__facilities-map">
+            <img src="{% static 'assets/img/Rectangle 154.png' %}" alt="" id="space__details-map">
+          </div>
+
+          
+        </div>   
+    </div>
+</div>  
+{% endblock %}
+{% block domready %}
+<script src="{% static 'assets/js/index.js' %}"></script>
+<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+{% endblock %}

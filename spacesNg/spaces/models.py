@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from taggit.managers import TaggableManager
 
 # Create your models here.
@@ -41,6 +42,13 @@ class Spaces(models.Model):
     address = models.CharField(max_length=256, default='')
     created = models.DateField(auto_now_add=True, db_index=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    rating = models.CharField(max_length=4, default='')
+    email = models.CharField(max_length=64, default='')
+    facebook = models.CharField(max_length= 64, default='')
+    twitter = models.CharField(max_length= 64, default='')
+    telephone = models.CharField(max_length= 64, default='')
+    instagram = models.CharField(max_length= 64, default='')
+
 
     objects = models.Manager()
     published = PublishedManager()
@@ -49,4 +57,12 @@ class Spaces(models.Model):
     class Meta:
         verbose_name = 'Space'
         verbose_name_plural = 'Spaces'
+        ordering = ['-created']
+
+    def __str__(self):
+        return f'{self.name} - {self.lga}, {self.state}'
+
+    
+    def get_absolute_url(self):
+        return reverse('spaces:space_detail', args=[self.slug])
 # class Facility(models.Model):

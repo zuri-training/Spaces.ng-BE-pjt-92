@@ -17,8 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from spaces.views import CustomPasswordChangeView
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/password/change/', CustomPasswordChangeView.as_view(), name='account_password_change'),
     path('accounts/', include('allauth.urls')),
+    path('', include('spaces.urls')),
 ]
+

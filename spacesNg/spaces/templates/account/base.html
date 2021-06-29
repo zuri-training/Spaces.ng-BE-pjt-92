@@ -6,13 +6,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}{% endblock %} | Spaces.ng</title>
+    <title>{% block title %}{% endblock %} | Spaces.NG</title>
     <script
       src="https://kit.fontawesome.com/7cbbed23cb.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
       rel="stylesheet"
@@ -28,14 +26,14 @@
     <div class="header-components">
         <header>
           <div class="logo">
-            <p class="logo-name"><a href="index.html"> Spaces.NG</a></p>
+            <p class="logo-name"><a href="{% url 'spaces:index' %}"> Spaces.NG</a></p>
           </div>
           <div class="nav-wrap">
             <nav>
               <ul>
-                <li><a href="aboutus.html"> About Us</li></a>
-                <li><a href="contactus.html"> Contact Us</li></a>
-                <button class="register-btn"><a href="spaceowner.html">Do you have a space?</a></button>
+                <li><a href="#"> About Us</li></a>
+                <li><a href="#"> Contact Us</li></a>
+                <button class="register-btn"><a href="{% url 'spaces:register_space' %}">Do you have a space?</a></button>
               </ul>
             </nav>
             <div class="user" id = "user">   
@@ -61,10 +59,10 @@
         </header>
         <div id = "mobile-nav">
           <ul id="mobile-nav-links">
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="spaceowner.html">Register a Space</a></li>
-            <!-- <li><a href="dashboard.html">Find a Space</a></li> -->
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="{% url 'spaces:register_space' %}">Register a Space</a></li>
+            <li><a href="{% url 'spaces:dashboard' %}">Find a Space</a></li>
           </ul>
         </div>
     </div>
