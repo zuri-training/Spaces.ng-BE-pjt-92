@@ -1,0 +1,18 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% block title %}Verification Sent{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="reset-container">
+    <h1>VERIFY YOUR EMAIL ADDRESS</h1>
+      <div class="forgot-password-wrap">
+        <p>We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. 
+            Please contact us if you do not receive it within a few minutes.</p>
+      </div>
+</div>
+{% endblock %}
+{% block domready %}
+    <script src="{% static 'assets/js/signin.js' %}"></script>
+{% endblock %}

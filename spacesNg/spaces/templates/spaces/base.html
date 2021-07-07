@@ -1,0 +1,126 @@
+{% load static %}
+{% load account %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="assets/css/slick.css"> -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% block style %}{% endblock %}
+    <title>{% block title %}{% endblock %} | Spaces.NG</title>  
+  </head>
+  <body>
+    <div class="header-components">
+      <header> 
+        <div class="logo">
+          <p class="logo-name"><a href="{% url 'spaces:index' %}"> Spaces.NG</a></p>
+        </div>
+        <div class="nav-wrap">
+          <nav>
+            <ul>
+              <li><a href="#"> About Us</li></a>
+              <li><a href="#"> Contact Us</li></a>
+              <button class="register-btn"><a href="{% url 'spaces:register_space' %}">Do you have a space?</a></button>
+            </ul>
+          </nav>
+          <div class="user" id = "user">   
+            <i class="far fa-user-circle"></i>
+            {% if request.user.is_authenticated %}
+            <ul class="dropdown">
+              <li><a href="#">Hello, {{ request.user.username | capfirst }}</a></li>
+              <li><a href="{% url 'account_password_change' %}">Change Password</a></li>
+              <li id="id_logout"><a href="#">Log Out</a></li>
+            </ul>
+            {% else %}
+            <ul class="dropdown">
+              <li><a href="{% url 'account_signup' %}">Sign up</a></li>
+              <li><a href="{% url 'account_login' %}">Sign in</a></li>
+            </ul>
+            {% endif %}
+          </div>
+          <div id="menu-icon">
+            <div class="bar" id="bars" onclick="lockScroll();"></div>
+            <!-- <i class="far fa-user-circle"></i> -->
+          </div>
+        </div>
+        
+      </header>
+      <div id = "mobile-nav">
+        <ul id="mobile-nav-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="{% url 'spaces:register_space' %}">Register a Space</a></li>
+          <li><a href="{% url 'spaces:dashboard' %}">Find a Space</a></li>
+        </ul>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+    {% if request.user.is_authenticated %}
+      <div class="modal-wrap" id="logout-modal">
+        <div class="modal">
+          <p>Are you sure you want to log out?</p>
+          <form action="{% url 'account_logout' %}" method="POST" id="logout-form">
+              {% csrf_token %}
+            <button class="modal__btn" type="submit">Yes, Log Out</button>
+            <button class="modal__btn close" id='close'>No</button>
+          </form>
+          <div class="modal-close">
+            <p>x</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    <div class="footer-component">
+      <footer>
+        <div class="footer-wrap">
+          <div class="footer-info">
+            <p class="logo-name">Spaces.NG</p>
+            <div class="contact">
+              <p><i class="fas fa-envelope"></i>spacesng@gmail.com</p>
+              <p class="bold-icon"><i class="fas fa-phone-alt"></i>08050040020</p>
+              <p class="app"><i class="fab fa-android"></i><a href=""> Download our Android app</a></p>
+            <p class="app"><i class="fab fa-apple"></i>Download our IOS app</p>
+            </div>
+            
+          </div>
+          <div class="site-links">
+            <h3>Site Links</h3>
+            <ul>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>About Us</li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>Contact Us</li>
+            </ul>
+          </div>
+          <div class="legal">
+            <h3>Legal</h3>
+            <ul>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>Terms & conditions</li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>License Agreement</li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>Privacy Policy</li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>Copyright Information</li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i>Cookies Policy</li>
+            </ul>       
+          </div>
+          <div>
+            <h3>Social Links</h3>
+            <ul class="social">
+              <li><i class="fab fa-instagram"></i></li>
+              <li><i class="fab fa-facebook"></i></li>
+              <li><i class="fab fa-twitter"></i></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+      <div class="pjt-92">
+        <p>Designed by PJT-92 Team</p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    {% block domready %}
+    {% endblock %}
+  </body>
+</html>

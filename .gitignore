@@ -1,0 +1,9 @@
+# Virtual Environments
+spaces_env/
+
+# # Text backup files
+*.bak
+
+# Database
+*.sqlite3
+spacesNg/db.sqlite3

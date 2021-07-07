@@ -1,0 +1,65 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% block title %}Sign In{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" />
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'account_login' %}" class="login__form login" id="login" name="form" method="POST">
+        {% csrf_token %}
+        <h1 class="form__title">Welcome Back</h1>
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p class="sign__in danger">{{ error|escape }}</p>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <p class="sign__in danger">{{ error|escape }}</p>
+        {% endfor %}
+        {% else %}
+        <p class="sign__in">Please sign in</p>
+        {% endif %}
+
+        <div class="envelope-icon input__section">
+            <i id="email_icon" class="envelope icon fas fa-envelope"></i>
+            <input type="email" name='login' class="form__input email" autofocus placeholder="Email address" required id="id_login">
+            <i class="email_check fas fa-check-circle"></i>
+            <i class="email_exclamation fas fa-exclamation-circle"></i>
+            <div class="form__message email__error">{{ form.login.errors }}</div>
+        </div>
+        <div class="pas-lock input__section">
+            <i id="pas_icon" class="lock icon fas fa-lock" aria-hi></i>
+            <input type="password" name='password' class="form__input password" autofocus placeholder="Password" required id="id_password">
+            <i class="password_check fas fa-check-circle"></i>
+            <i class="password_exclamation fas fa-exclamation-circle"></i>
+            <div class="form__message password__error">{{ form.password.errors }}</div>
+        </div>
+        <div class="forgotten__pass">
+            <div class="">
+                <input type="checkbox" name="remember" id="id_remember"> 
+                <label for="">Keep me signed in</label>
+            </div>
+            
+            <a href="{% url 'account_reset_password' %}" class="other-links">Forgot Password?</a>
+        </div>
+
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+        {% endif %}
+        <button class="login__btn" type="submit">Login</button>
+        <div class="form__text">
+            <p class="link__text">Don't have an account yet?  
+            <a href="{% url 'account_signup' %}" class="other-links">Sign up</a>
+            </p>
+        </div>
+    </form>
+
+    <div class="image__container">
+    </div>
+</div>
+{% endblock %}
+{% block domready %}
+    <script src="{% static 'assets/js/signin.js' %}"></script>
+{% endblock %}

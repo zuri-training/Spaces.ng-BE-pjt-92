@@ -1,0 +1,154 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}Explore Workspaces{% endblock %}
+{% block style %}
+<!-- <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" /> -->
+<link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}" />{% endblock %}
+{% block content %}
+<div class="main">
+    <div class="breadcrumb">
+      <ul>
+        <li><a href="{% url 'spaces:index' %}">Home</a></li>
+        <!-- <li><a href="#">
+          <span class="state">Lagos</span> (
+          <span class="number-found-state">100</span> )</a>
+        </li>
+        <li><a href="#">
+          Workspaces in <span class="lga">Ikeja</span> (
+          <span class="number-found-city">10</span> )</a>
+        </li> -->
+        <li><a href="#">
+            Explore Workspaces</a>
+          </li>
+      </ul>
+    </div>
+    <form action="{% url 'spaces:search' %}" >
+      <div class="country form-item">
+        <label>Select a Country</label>
+        <select name="country" id="country" disabled>
+          <option value="Nigeria">Nigeria</option>
+        </select>
+      </div>
+      <div class="state form-item">
+        <label>Select a State</label>
+        <select name="state" class="state" id="state">
+        </select>
+      </div>
+      <div class="city form-item">
+        <label>Select LGA</label>
+        <select name="lga" class="lga" id="lga">
+          <option value="">Select LGA</option>
+        </select>
+      </div>
+      <button type="submit" id="submit">Find Space</button>
+    </form>
+    <div class="results-wrap">
+      <div class="page-title">
+        <!-- <h1>
+          Workspaces in <span class="city">Ikeja</span>,<br />
+          <span class="state">Lagos</span> State
+        </h1> -->
+        <h1>
+            Explore Workspaces
+          </h1>
+      </div>
+      <div class="main-body">
+        <section class="aside">
+         
+          <div class="space-filters">
+            <div class="facilities space-filters-item">
+              <h3 class="aside-item-title">Facilities</h3>
+              <div class="filter-wrap close-filter">
+                <div class="facilities-item">
+                  <p>Parking</p>
+                  <input type="checkbox" name="parking" id="parking" />
+                </div>
+                <div class="facilities-item">
+                  <p>Wi-Fi</p>
+                  <input type="checkbox" name="wi-fi" id="wi-fi" />
+                </div>
+                <div class="facilities-item">
+                  <p>Whiteboard</p>
+                  <input type="checkbox" name="whiteboard" id="whiteboard" />
+                </div>
+                <div class="facilities-item">
+                  <p>Flat Screen</p>
+                  <input type="checkbox" name="flat screen" id="flat-screen" />
+                </div>
+              </div>
+            </div>
+            <div class="attendees space-filters-item">
+              <h3 class="">Attendees</h3>
+              <select name="attendees" id="attendees">
+                <option value="Any">Any</option>
+                <option value="0-5">0-5</option>
+                <option value="5-10">5-10</option>
+                <option value="10-14">10-14</option>
+                <option value="15-19">15-19</option>
+                <option value="20-29">20-29</option>
+                <option value="30+">30+</option>
+              </select>
+            </div>
+          </div>
+        </section>
+        <section class="results">
+          <div class="first">
+            <p class="first-line">
+              All spaces available
+            </p>
+            <div class="sort">
+              <p>Sort by:</p>
+              <select name="Most liked" id="sort">
+                <option value="Most Liked">Most Liked</option>
+                <option value="Least Liked">Least Liked</option>
+                <option value="Rating: High to Low">
+                  Rating: High to Low
+                </option>
+                <option value="Rating: Low to High">
+                  Rating: Low to High
+                </option>
+              </select>
+            </div>
+          </div>
+          <!-- <div class="second">
+            <p>
+              <span class="spaces-found">{{ spaces.count }}</span> Space{{ spaces|pluralize }} found.
+            </p>
+          </div> -->
+          <div class="spaces-wrap">
+              {% for space in spaces %}
+            <a href="{{ space.get_absolute_url }}">
+              <div class="spaces-item">
+                <img src="{{ space.image.url }}" alt="" />
+                <div class="space-item-text">
+                  <p class="space-name">{{ space.name }}</p>
+                  <p class="space-item-location">
+                    <i class="fas fa-map-marker-alt"></i> {{ space.state }}, Nigeria.
+                  </p>
+                </div>
+                <div class="like-icon"><i class="far fa-heart"></i></div>
+                <div class="ratings">
+                  <p class="rating-value">{{ space.rating }}</p>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </a>
+            </div>
+            {% empty %}
+            <div class="no-results">
+            <!-- <img src="assets/img/no-result" alt=""> -->
+                <p>Sorry, there are no spaces loaded yet.</p>
+            </div>
+             {% endfor %}
+             {% if spaces %}
+                {% include "pagination.html" with page=spaces %}
+          {% endif %}
+        </section>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block domready %}
+<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+<script src="{% static 'assets/js/dashboard.js' %}"></script>
+{% endblock %}

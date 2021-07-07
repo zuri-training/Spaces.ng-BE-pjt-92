@@ -1,0 +1,286 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}Find A Space That Suits You{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" />
+{% endblock %}
+{% block content %}
+<section class="intro" id="home">
+    <div class="intro__container">
+    <h3 class="intro__heading">
+        <span>Find</span> The Most Efficient and Reliable
+        <span>Working</span> Space Near You.
+    </h3>
+    </div>
+    <form action="{% url 'spaces:search' %}">
+    <div class="country form-item">
+        <label>Select a Country</label>
+        <select name="country" id="country" disabled>
+        <option value="Nigeria">Nigeria</option>
+        </select>
+    </div>
+    <div class="state form-item">
+        <label>Select a State</label>
+        <select name="state" class="state" id="state">
+        </select>
+    </div>
+    <div class="city form-item">
+        <label>Select LGA</label>
+        <select name="lga" class="lga" id="lga">
+        <option value="">Select LGA</option>
+        </select>
+    </div>
+    <button type="submit" id="submit">Find Space Now &#8594;</button>
+    </form>
+</section>
+<section class="intro__items">
+    <div class="intro__item">
+    <span class="intro__item__image">
+        <img src="{% static 'assets/img/wifi.png' %}" alt="" />
+    </span>
+    <h3 class="intro__item__name">24/7 Internet</h3>
+    <p class="intro__item__details">Enjoy unfettered internet service</p>
+    </div>
+    <div id="border__right"></div>
+    <div class="intro__item">
+    <span class="intro__item__image">
+        <img src="{% static 'assets/img/flash-outline.png' %}" alt="" />
+    </span>
+    <h3 class="intro__item__name">Steady power supply</h3>
+    <p class="intro__item__details">Enjoy uninterrupted power supply</p>
+    </div>
+    <div id="border__right" class="none"></div>
+    <div class="intro__item">
+    <span class="intro__item__image">
+        <img src="{% static 'assets/img/fast-food-outline.png' %}" alt="" />
+    </span>
+    <h3 class="intro__item__name">Refreshments</h3>
+    <p class="intro__item__details">
+        Quality refreshments promote productivity
+    </p>
+    </div>
+    <div id="border__right"></div>
+    <div class="intro__item">
+    <span class="intro__item__image">
+        <img src="{% static 'assets/img/barbell-outline.png' %}" alt="" />
+    </span>
+    <h3 class="intro__item__name">Workout Facilities</h3>
+    <p class="intro__item__details">
+        Facilities to keep you fit and healthy.
+    </p>
+    </div>
+</section>
+<section class="featured__spaces">
+    <h3>FEATURED SPACES</h3>
+    <div class="featured__spaces__wrap">
+    <div class="spaces-wrap">
+        <div class="spaces-item">
+        <img src="{% static 'assets/img/hub-one.png' %}" alt="" />
+        <div class="space-item-text">
+            <p class="space-name">Hub One</p>
+            <p class="space-item-location">
+            <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria.
+            </p>
+        </div>
+        <div class="ratings">
+            <p class="rating-value">4.8</p>
+            <i class="fas fa-star"></i>
+        </div>
+        </div>
+    </div>
+    <div class="spaces-wrap">
+        <div class="spaces-item">
+        <img src="{% static 'assets/img/normadians.png' %}" alt="" />
+        <div class="space-item-text">
+            <p class="space-name">Kolab </p>
+            <p class="space-item-location">
+            <i class="fas fa-map-marker-alt"></i> Kaduna, Nigeria.
+            </p>
+        </div>
+        <div class="ratings">
+            <p class="rating-value">5.0</p>
+            <i class="fas fa-star"></i>
+        </div>
+        </div>
+    </div>
+    <div class="spaces-wrap">
+        <div class="spaces-item">
+        <img src="{% static 'assets/img/vibranium-valley.png' %}" alt="" />
+        <div class="space-item-text">
+            <p class="space-name">nHub Nigeria</p>
+            <p class="space-item-location">
+            <i class="fas fa-map-marker-alt"></i> Plateau, Nigeria.
+            </p>
+        </div>
+        <div class="ratings">
+            <p class="rating-value">5.0</p>
+            <i class="fas fa-star"></i>
+        </div>
+        </div>
+    </div>
+    <div class="spaces-wrap">
+        <div class="spaces-item">
+        <img src="{% static 'assets/img/work-central.png' %}" alt="" />
+        <div class="space-item-text">
+            <p class="space-name">andela</p>
+            <p class="space-item-location">
+            <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria.
+            </p>
+        </div>
+        <div class="ratings">
+            <p class="rating-value">5.0</p>
+            <i class="fas fa-star"></i>
+        </div>
+        </div>
+    </div>
+    <div class="spaces-wrap">
+        <div class="spaces-item">
+        <img src="{% static 'assets/img/lead-space.png' %}" alt="" />
+        <div class="space-item-text">
+            <p class="space-name">Zuri Hub</p>
+            <p class="space-item-location">
+            <i class="fas fa-map-marker-alt"></i> Abuja, Nigeria.
+            </p>
+        </div>
+        <div class="ratings">
+            <p class="rating-value">4.8</p>
+            <i class="fas fa-star"></i>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+<section class="main">
+    <div class="main__container">
+    <h3 class="main__container__heading">
+        Spaces for Nigeria's Largest Techies
+    </h3>
+    <div class="main__container__features">
+        <div class="main__container__feature">
+        <img src="{% static 'assets/img/paystack.png' %}" alt="" />
+        </div>
+        <div class="main__container__feature">
+        <img src="{% static 'assets/img/unnamed 1.png' %}" alt="" />
+        </div>
+        <div class="main__container__feature">
+        <img src="{% static 'assets/img/CCHUB-logo 1.png' %}" alt="" />
+        </div>
+    </div>
+    </div>
+</section>
+<section class="testimonies">
+    <h3 class="testimonies__heading">Testimonials</h3>
+    <div class="testimonies__details">
+    <div class="test-wrap">
+        <div class="testimonies__container">
+        <!-- <div class="testimonies__image">
+            <img
+            src="{% static 'assets/img/office1.jpg"
+            alt=""
+            
+            />
+        </div> -->
+        <div class="testimonies__text">
+            <p class="testimonies__text__content">
+            Spaces.NG not only helped me to find an incredible space, it also helped me make very important connections that have boosted my career. The platform is seamless and extremely effective. 
+            </p>
+            <div class="client__name">
+            <div class="line"></div>
+            <p>Candice Adeshina</p>
+            <p>Designer, Google Nigeria.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="test-wrap">
+        <div class="testimonies__container">
+        <!-- <div class="testimonies__image">
+            <img
+            src="{% static 'assets/img/office2.jpg"
+            alt=""
+            
+            />
+        </div> -->
+        <div class="testimonies__text">
+            <p class="testimonies__text__content">
+            Spaces.NG really solved a huge problem for me. As a freelancer, finding good spaces are important to me and with the current light situation, Spaces.NG is my best friend
+            </p>
+            <div class="client__name">
+            <div class="line"></div>
+            <p>Andy Ameobi</p>
+            <p>Freelancer</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="test-wrap">
+        <div class="testimonies__container">
+        <!-- <div class="testimonies__image">
+            <img
+            src="{% static 'assets/img/office3.jpg"
+            alt=""
+            
+            />
+        </div> -->
+        <div class="testimonies__text">
+            <p class="testimonies__text__content">
+            My team and I were looking for a space to have meetings and that was when we found Spaces.NG. It was an incredible experience and they also ensure that the space on the platform are secure and of high quality. Kudos
+            </p>
+            <div class="client__name">
+            <div class="line"></div>
+            <p>Amanda Amaefule</p>
+            <p>CEO, Every Woman</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="test-wrap">
+        <div class="testimonies__container">
+        <!-- <div class="testimonies__image">
+            <img
+            src="{% static 'assets/img/office1.jpg"
+            alt=""
+            
+            />
+        </div> -->
+        <div class="testimonies__text">
+            <p class="testimonies__text__content">
+            Spaces.NG not only helped me to find an incredible space, it also helped me make very important connections that have boosted my career. The platform is seamless and extremely effective. 
+            </p>
+            <div class="client__name">
+            <div class="line"></div>
+            <p>Candice Adeshina</p>
+            <p>Designer, Google Nigeria.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="test-wrap">
+        <div class="testimonies__container">
+        <!-- <div class="testimonies__image">
+            <img
+            src="{% static 'assets/img/office2.jpg"
+            alt=""
+            
+            />
+        </div> -->
+        <div class="testimonies__text">
+            <p class="testimonies__text__content">
+            Spaces.NG really solved a huge problem for me. As a freelancer, finding good spaces are important to me and with the current light situation, Spaces.NG is my best friend
+            </p>
+            <div class="client__name">
+            <div class="line"></div>
+            <p>Andy Ameobi</p>
+            <p>Freelancer</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}
+{% block domready %}
+<script src="{% static 'assets/js/index.js' %}"></script>
+<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+{% endblock %}

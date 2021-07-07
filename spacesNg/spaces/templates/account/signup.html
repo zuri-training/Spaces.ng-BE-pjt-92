@@ -1,0 +1,73 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'assets/css/signup.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <div class="form-title">
+        <h2>Lets Get started!</h2>
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p><span class="error"><em>{{ error|escape }}</em></span></p>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <p><span class="error"><em>{{ error|escape }}</em></span></p>
+        {% endfor %}
+        {% else %}
+            <p>Create an account with us</p>
+        {% endif %}
+        </div>
+    
+        <form id="form" class="form-data" action="{% url 'account_signup' %}" method="post">
+            {% csrf_token %}
+            
+        <div class="form-input-container">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Username" class="form-input" id="id_username" name="username" minlength="2" maxlength="64" required>
+        </div>
+        <div class="form-input-container">
+        <i class="far fa-envelope"></i>
+        <input type="email" placeholder="Email" class="form-input" id="id_email" name="email" required>
+        </div>
+        <div class="form-input-container">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Password" class="form-input" id="id_password1" name="password1" required>
+        <span id='message'></span>
+        
+        </div>
+        <div class="form-input-container">
+            <i class="far fa-eye"></i>
+            <input type="password" placeholder="Confirm password" class="form-input" id="id_password2" name="password2" required>
+            <span id='message'></span>
+            </div>
+        
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+            {% endif %}
+        <button type="submit" class="btn-signup">Sign up </button>
+        <div class="select">
+
+
+
+            <input type="checkbox" id="agreement" name="agreeement" value="Bike" class="check" required>
+            <label for="agreement" class="form-agreement"> I agree with all <a class="blue-link" href="#">terms and conditions</a></label>
+        </div>
+            
+        <p class="signin">Already have an account? <span class="blue-link"><a href="{% url 'account_login' %}">Sign In</a></span></p>
+        </form>
+
+    </div>
+  <div class="img-container">
+    <img src="{% static 'assets/img/Rectangle 17.png' %}" class="form-img" alt="form image">
+
+  </div>
+</div>
+{% endblock %}
+{% block domready %}
+    <script src="{% static 'assets/js/signup.js' %}"></script>
+{% endblock %}

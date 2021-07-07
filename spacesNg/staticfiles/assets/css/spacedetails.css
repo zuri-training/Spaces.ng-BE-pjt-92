@@ -1,0 +1,249 @@
+/* space details */
+
+/* BREADCRUMBS START */
+.breadcrumbs__container {
+  /* padding: 10px;
+    background-color: #e5e5e5; */
+  width: 100%;
+}
+
+.breadcrumbs {
+  padding-top: 7rem;
+  padding-left: 20px;
+  background-color: #e5e5e5;
+  font-family: "roboto";
+}
+
+.breadcrumbs__item {
+  display: inline-block;
+}
+
+.breadcrumbs__item:not(:last-of-type)::after {
+  /* content: "/"; */
+  content: "\203a";
+  margin: 0 5px;
+  color: #323232;
+}
+
+.breadcrumbs__link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.breadcrumbs__link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs__link--active {
+  color: #000000;
+  font-weight: 500;
+}
+
+/* BREADCRUMBS END */
+
+.space__details {
+  /* width: 100vw;
+    height: 100vh; */
+  background-color: #e5e5e5;
+}
+
+.space__details__container {
+  background-color: #ffffff;
+  box-shadow: rgb(50, 76, 77);
+  border-radius: 5px;
+  max-width: 1600px;
+  margin: 30px auto 0;
+}
+
+.space__details__image__container {
+  align-items: center;
+  margin: 20px;
+}
+.space__details__image {
+  margin: 40px;
+  padding: 30px 0 0;
+}
+
+.space__details__image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: contrast(30px);
+}
+
+.space__details__caption {
+  /* padding-top: 35px; */
+  color: #443a6c;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.space__details__spaces {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* margin-left: 35px;
+    margin-right: 35px;
+    margin-top: 0; */
+}
+
+.space__details__spaces__text {
+  /* padding-left: 45px; */
+  line-height: 30px;
+  width: 40%;
+}
+.space__details__spaces__text-content {
+  font-size: 16px;
+}
+.space__details__spaces__location-container {
+  background-color: #cbc4e6;
+  /* margin-right: 20px; */
+  border-radius: 5px;
+  padding: 15px 30px;
+  line-height: 30px;
+}
+.space__details__spaces__location {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 35%;
+}
+
+.space__details__space__contacts {
+  font-weight: bold;
+}
+
+.space__details__spaces__text h5 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.space__details__spaces__location-heading {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.space__details__space__contacts a {
+  margin-left: 15px;
+  font-size: 12px;
+}
+
+.space__details__spaces__street span {
+  margin-left: 15px;
+}
+
+.space__details__spaces__rating-container i {
+  font-size: 20px;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.space__details__spaces__text-content {
+  color: #443a6c;
+}
+
+.space__details__spaces__text-content span {
+  font-weight: bold;
+}
+
+.space__details__facilities {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+  padding: 20px 0 40px;
+}
+.space__details__facilities-container {
+  width: 40%;
+}
+.space__details__facilities-text {
+  width: 100%;
+  padding: 20px 0;
+}
+.space__details__facilities-text ul {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 500px;
+  padding: 0;
+}
+.space__details__facilities-text ul li {
+  margin: 10px 15px;
+  font-weight: bold;
+  color: #443a6c;
+  font-size: 16px;
+}
+
+.space__details__facilities-text h4 {
+  font-weight: bold;
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+/* table */
+.table__column {
+  float: left;
+  width: 170px;
+  padding: 10px;
+  height: 100px;
+}
+
+.table__row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.table__column p {
+  font-size: 16px;
+  font-weight: bold;
+}
+.space__details__facilities-map {
+  width: 35%;
+  margin: 0;
+  height: 300px;
+}
+.space__details__facilities-map img {
+  width: 100%;
+  height: 300px;
+}
+
+/* table end */
+
+/* space details */
+
+@media (max-width: 1150px) {
+  .space__details__facilities-map,
+  .space__details__spaces__location {
+    width: 40%;
+  }
+}
+@media (max-width: 760px) {
+  ul.breadcrumbs {
+    padding-top: 90px;
+  }
+  .space__details__caption {
+    font-size: 30px;
+  }
+  .space__details__image {
+    margin: 0;
+  }
+  .space__details__spaces,
+  .space__details__facilities {
+    flex-direction: column;
+  }
+  .space__details__spaces__text,
+  .space__details__spaces__location,
+  .space__details__facilities-container,
+  .space__details__facilities-map {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .table__row {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .table__row h2 {
+    font-size: 20px;
+  }
+}
