@@ -1,0 +1,72 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+{% block style %}
+<!-- <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" /> -->
+<link rel="stylesheet" href="{% static 'assets/css/contactus.css' %}" />{% endblock %}
+{% block content %}
+<ul class="contact__nav">
+    <li><a href="{% url 'spaces:index' %}">Home</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+  <div class="image__container">
+    <h1>Contact Us</h1>
+    {% if success %}
+    <p>{{ success }}</p>
+    {% else %}
+    <p>We love to hear from you!</p>
+    {% endif %}
+</div>
+  <div class="container">
+      <form action="{% url 'spaces:contactus' %}" method="POST" class="contact__form">
+          {% csrf_token %}
+          <h1 class="heading">Get in Touch</h1>
+          <p>Feel free to drop a message below</p>
+          <div class="form__container">
+              <div class="detail">
+                  <input type="text" name="name" id="input__element" required>
+                  <label for="name">Full Name</label>
+                  <div class="underline"></div>
+              </div>
+              <div class="detail">
+                  <input type="text" name="email" id="input__element" required> 
+                  <label for="email">Email</label>
+                  <div class="underline"></div>
+              </div>
+              <div class="detail">
+                  <input type="tel" name="telephone" id="input__element" required>
+                  <label for="telephone">Phone Number</label>
+                  <div class="underline"></div>
+              </div>
+              <div class="detail">
+                  <input type="text" name="subject" id="input__element" required>
+                  <label for="subject">Subject</label>
+                  <div class="underline"></div>
+              </div>
+              <div class="detail">
+                  <textarea name="message" id="input__element" cols="30" rows="10" required></textarea>
+                  <label for="message">Type your message</label>
+                  <div class="underline"></div>
+              </div>
+          </div>
+
+          <button class="btn">Submit</button>
+      </form>
+      <div class="contact__address">
+          <div class="contact__details">
+              <h1 class="contact__us">You Can Always Reach Us</h1>
+              <div class="call">
+                  <i class="phone fa fa-phone-alt"></i>
+                  <p class="contact__text">Call: +2348050040020</p>
+              </div>
+              <div class="mail">
+                  <i class="envelope fa fa-envelope"></i>
+                  <p class="contact__text">Email: spacesng@gmail.com</p>
+              </div>
+          </div>
+      </div>
+  </div>
+{% endblock %}
+{% block domready %}
+<script src="{% static 'assets/js/signin.js' %}"></script>
+{% endblock %}

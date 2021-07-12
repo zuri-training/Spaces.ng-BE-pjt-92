@@ -2,8 +2,8 @@
 {% load static %}
 {% block title %}Find A Space That Suits You{% endblock %}
 {% block style %}
+<!-- <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" /> -->
 <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
-<link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" />
 {% endblock %}
 {% block content %}
 <section class="intro" id="home">
@@ -74,83 +74,46 @@
 <section class="featured__spaces">
     <h3>FEATURED SPACES</h3>
     <div class="featured__spaces__wrap">
-    <div class="spaces-wrap">
+        {% for space in featured_spaces %}
+      <a href="{{ space.get_absolute_url }}">
+      <div class="spaces-wrap">
         <div class="spaces-item">
-        <img src="{% static 'assets/img/hub-one.png' %}" alt="" />
-        <div class="space-item-text">
-            <p class="space-name">Hub One</p>
+          <img src="{{ space.image.url }}" alt="" />
+          <div class="space-item-text">
+            <p class="space-name">{{ space.name }}</p>
             <p class="space-item-location">
-            <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria.
+              <i class="fas fa-map-marker-alt"></i> {{ space.state }}, Nigeria.
             </p>
-        </div>
-        <div class="ratings">
-            <p class="rating-value">4.8</p>
+          </div>
+          <div class="ratings">
+            <p class="rating-value">{{ space.rating }}</p>
             <i class="fas fa-star"></i>
+          </div>
         </div>
-        </div>
+      </div></a>
+      {% endfor %}
     </div>
-    <div class="spaces-wrap">
-        <div class="spaces-item">
-        <img src="{% static 'assets/img/normadians.png' %}" alt="" />
-        <div class="space-item-text">
-            <p class="space-name">Kolab </p>
-            <p class="space-item-location">
-            <i class="fas fa-map-marker-alt"></i> Kaduna, Nigeria.
-            </p>
-        </div>
-        <div class="ratings">
-            <p class="rating-value">5.0</p>
-            <i class="fas fa-star"></i>
-        </div>
-        </div>
+  </section>
+  <section class="experience">
+    <div class="experience__container">
+      <h2>Finding a space has never been easier!</h2>
+      <div class="experience__container-body">
+        <h5><i class="fas fa-check"></i> Simple and easy to use</h5>
+        <!-- <hr class="experience__line"> -->
+        <p>With Spaces, searching for workspaces in your area is now hassle free.<br> 
+          Find spaces with the facilities you need and the right budget.</p>
+           <h5><i class="fas fa-shield-alt"></i> Tested and trusted spaces</h5>
+           <!-- <hr class="experience__line"> -->
+           <p>Your security is our priority. We have validated the workspaces <br> on our site and they are safe and ready to use.<br>
+            <h5><i class="fas fa-user"></i> Sign up with us</h5>
+            <!-- <hr class="experience__line"> -->
+            <p>To view details of spaces, sign up with us. <br>
+               It is absolutely FREE!</p>
+               <button><a href="{% url 'account_signup' %}">Sign up</a></button>
+
+      </div>
     </div>
-    <div class="spaces-wrap">
-        <div class="spaces-item">
-        <img src="{% static 'assets/img/vibranium-valley.png' %}" alt="" />
-        <div class="space-item-text">
-            <p class="space-name">nHub Nigeria</p>
-            <p class="space-item-location">
-            <i class="fas fa-map-marker-alt"></i> Plateau, Nigeria.
-            </p>
-        </div>
-        <div class="ratings">
-            <p class="rating-value">5.0</p>
-            <i class="fas fa-star"></i>
-        </div>
-        </div>
-    </div>
-    <div class="spaces-wrap">
-        <div class="spaces-item">
-        <img src="{% static 'assets/img/work-central.png' %}" alt="" />
-        <div class="space-item-text">
-            <p class="space-name">andela</p>
-            <p class="space-item-location">
-            <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria.
-            </p>
-        </div>
-        <div class="ratings">
-            <p class="rating-value">5.0</p>
-            <i class="fas fa-star"></i>
-        </div>
-        </div>
-    </div>
-    <div class="spaces-wrap">
-        <div class="spaces-item">
-        <img src="{% static 'assets/img/lead-space.png' %}" alt="" />
-        <div class="space-item-text">
-            <p class="space-name">Zuri Hub</p>
-            <p class="space-item-location">
-            <i class="fas fa-map-marker-alt"></i> Abuja, Nigeria.
-            </p>
-        </div>
-        <div class="ratings">
-            <p class="rating-value">4.8</p>
-            <i class="fas fa-star"></i>
-        </div>
-        </div>
-    </div>
-    </div>
-</section>
+  </section>
 <section class="main">
     <div class="main__container">
     <h3 class="main__container__heading">
@@ -158,15 +121,24 @@
     </h3>
     <div class="main__container__features">
         <div class="main__container__feature">
-        <img src="{% static 'assets/img/paystack.png' %}" alt="" />
+          <img src="{% static 'assets/img/zuri.png' %}" alt="" />
         </div>
         <div class="main__container__feature">
-        <img src="{% static 'assets/img/unnamed 1.png' %}" alt="" />
+          <img src="{% static 'assets/img/i4g.png' %}" alt="" />
         </div>
         <div class="main__container__feature">
-        <img src="{% static 'assets/img/CCHUB-logo 1.png' %}" alt="" />
+          <img src="{% static 'assets/img/hng.png' %}" alt="" />
         </div>
-    </div>
+        <div class="main__container__feature">
+          <img src="{% static 'assets/img/paystack.png' %}" alt="" />
+        </div>
+        <div class="main__container__feature">
+          <img src="{% static 'assets/img/unnamed 1.png' %}" alt="" />
+        </div>
+        <div class="main__container__feature">
+          <img src="{% static 'assets/img/CCHUB-logo 1.png' %}" alt="" />
+        </div>
+      </div>
     </div>
 </section>
 <section class="testimonies">
@@ -282,5 +254,5 @@
 {% endblock %}
 {% block domready %}
 <script src="{% static 'assets/js/index.js' %}"></script>
-<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+<script src="{% static 'assets/js/signin.js' %}"></script>
 {% endblock %}

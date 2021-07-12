@@ -1,0 +1,13 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}404{% endblock %}
+{% block content %}
+<div class="error-container">
+    <h1>Sorry, this page can not be found</h1>
+  <p>The page has been moved or is not available.</p>
+  <button><a href="{% url 'spaces:index' %}">Back to home</a></button>
+</div>
+{% endblock %}
+{% block domready %}
+<script src="{% static 'assets/js/signin.js' %}"></script>
+{% endblock %}
