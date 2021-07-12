@@ -104,15 +104,20 @@ let getPath = (facilities) => {
 let trim = (text) => {
     const space = '<div class="spaces-wrap">'
     const pagination = '<div class="pagination">'
+    const num = '<span class="spaces-found">'
     let space_head = text.indexOf(space)
     let page_head = text.indexOf(pagination)
+    let num_head = text.indexOf(num)
     let space_html = text.slice(space_head)
     let page_html = text.slice(page_head)
+    let num_html = text.slice(num_head)
     let space_tail = space_html.indexOf('<!-- end of spaces -->')
     let page_tail = page_html.indexOf('</div>')
+    let num_tail = num_html.indexOf('</span>')
     space_html = space_html.slice(space.length, space_tail)
     page_html = page_html.slice(pagination.length, page_tail)
-    return [space_html, page_html]
+    num_html = num_html.slice(num.length, num_tail)
+    return [space_html, page_html, num_html]
 }
 
 let filter = (url) => {
@@ -121,6 +126,8 @@ let filter = (url) => {
     .then(data => {
         document.querySelector('.spaces-wrap').innerHTML = trim(data)[0]  // Replace current space-wrap result HTML
         document.querySelector('.pagination').innerHTML = trim(data)[1]  // Replace current pagination HTML
+        document.querySelector('.spaces-found').innerHTML = trim(data)[2]  // Replace current pagination HTML
+        console.log(trim(data)[2])
     })
 }
 

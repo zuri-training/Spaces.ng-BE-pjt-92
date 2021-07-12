@@ -47,7 +47,7 @@ def dashboard(request):
         spaces = paginator.page(1)
     except EmptyPage:
         spaces = paginator.page(paginator.num_pages)
-    return render(request, 'spaces/dashboard.html', {'spaces': spaces, 'page': page, 'spacecount': spacecount, 'facility_list': facility_list})
+    return render(request, 'spaces/dashboard.html', {'spaces': spaces, 'page': page, 'spacecount': spacecount, 'facility_list': facility_list, 'object_list': object_list})
 
 @login_required
 def space_detail(request, space):

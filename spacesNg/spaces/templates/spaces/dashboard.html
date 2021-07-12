@@ -100,11 +100,11 @@
               </select>
             </div>
           </div>
-          <!-- <div class="second">
+          <div class="second">
             <p>
-              <span class="spaces-found">{{ spaces.count }}</span> Space{{ spaces|pluralize }} found.
+              <span class="spaces-found">{{ object_list.count }}</span> Space{{ object_list.count|pluralize }} found.
             </p>
-          </div> -->
+          </div>
           <div class="spaces-wrap">
               {% for space in spaces %}
             <a href="{{ space.get_absolute_url }}" data-facilities="{{ space.facilities.all | join:', ' }}">
