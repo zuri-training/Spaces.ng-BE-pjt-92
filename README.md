@@ -1,7 +1,7 @@
 
 ### SPACES.NG PJT-92
  ### SITE LINK
- spacesngapp.herokuapp.com
+ https://spacesngapp.herokuapp.com
  
  
  ### ABOUT SPACES.NG
