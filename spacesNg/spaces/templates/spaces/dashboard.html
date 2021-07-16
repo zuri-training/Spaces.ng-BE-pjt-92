@@ -17,8 +17,8 @@
           Workspaces in <span class="lga">Ikeja</span> (
           <span class="number-found-city">10</span> )</a>
         </li> -->
-        <li><a href="#">
-            Explore Workspaces</a>
+        <li><a href="{% url 'spaces:dashboard' %}">
+            Explore Workspaces {% if spaces %}({{ spacecount.count }}){% endif %}</a>
           </li>
       </ul>
     </div>
@@ -49,7 +49,7 @@
           <span class="state">Lagos</span> State
         </h1> -->
         <h1>
-            Explore Workspaces
+            Explore Workspaces {% if spaces %}({{ spacecount.count }}){% endif %}
           </h1>
       </div>
       <div class="main-body">
@@ -59,29 +59,19 @@
             <div class="facilities space-filters-item">
               <h3 class="aside-item-title">Facilities</h3>
               <div class="filter-wrap close-filter">
+                {% for facility in facility_list %}
                 <div class="facilities-item">
-                  <p>Parking</p>
-                  <input type="checkbox" name="parking" id="parking" />
+                  <p>{{ facility | capfirst }}</p>
+                  <input type="checkbox" name="{{ facility | lower }}" id="{{ facility | lower | slugify }}" />
                 </div>
-                <div class="facilities-item">
-                  <p>Wi-Fi</p>
-                  <input type="checkbox" name="wi-fi" id="wi-fi" />
-                </div>
-                <div class="facilities-item">
-                  <p>Whiteboard</p>
-                  <input type="checkbox" name="whiteboard" id="whiteboard" />
-                </div>
-                <div class="facilities-item">
-                  <p>Flat Screen</p>
-                  <input type="checkbox" name="flat screen" id="flat-screen" />
-                </div>
+                {% endfor %}
               </div>
             </div>
             <div class="attendees space-filters-item">
               <h3 class="">Attendees</h3>
               <select name="attendees" id="attendees">
-                <option value="Any">Any</option>
-                <option value="0-5">0-5</option>
+                <option value="">Any</option>
+                <option value="1-4">1-4</option>
                 <option value="5-10">5-10</option>
                 <option value="10-14">10-14</option>
                 <option value="15-19">15-19</option>
@@ -99,25 +89,25 @@
             <div class="sort">
               <p>Sort by:</p>
               <select name="Most liked" id="sort">
-                <option value="Most Liked">Most Liked</option>
-                <option value="Least Liked">Least Liked</option>
-                <option value="Rating: High to Low">
+                <option value="-created">Newest First</option>
+                <option value="created">Oldest First</option>
+                <option value="-rating">
                   Rating: High to Low
                 </option>
-                <option value="Rating: Low to High">
+                <option value="rating">
                   Rating: Low to High
                 </option>
               </select>
             </div>
           </div>
-          <!-- <div class="second">
+          <div class="second">
             <p>
-              <span class="spaces-found">{{ spaces.count }}</span> Space{{ spaces|pluralize }} found.
+              <span class="spaces-found">{{ object_list.count }} Space{{ object_list.count|pluralize }} found.</span>
             </p>
-          </div> -->
+          </div>
           <div class="spaces-wrap">
               {% for space in spaces %}
-            <a href="{{ space.get_absolute_url }}">
+            <a href="{{ space.get_absolute_url }}" data-facilities="{{ space.facilities.all | join:', ' }}">
               <div class="spaces-item">
                 <img src="{{ space.image.url }}" alt="" />
                 <div class="space-item-text">
@@ -133,13 +123,14 @@
                 </div>
               </div>
             </a>
-            </div>
             {% empty %}
             <div class="no-results">
             <!-- <img src="assets/img/no-result" alt=""> -->
-                <p>Sorry, there are no spaces loaded yet.</p>
+                <p>Sorry, there are no spaces that match your query.</p>
             </div>
              {% endfor %}
+             <!-- end of spaces -->
+          </div>
              {% if spaces %}
                 {% include "pagination.html" with page=spaces %}
           {% endif %}
@@ -149,6 +140,7 @@
   </div>
 {% endblock %}
 {% block domready %}
-<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
 <script src="{% static 'assets/js/dashboard.js' %}"></script>
+<script src="{% static 'assets/js/signin.js' %}"></script>
+<script src="{% static 'assets/js/filter.js' %}"></script>
 {% endblock %}

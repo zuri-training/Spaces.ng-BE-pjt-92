@@ -14,13 +14,15 @@
       </ul>
     </div>
     <div class="main">
-      <form action="#">
+      <form target="_blank" action="{% url 'spaces:register_space' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="facilities" value="" id="id_facilities">
         <h1>Do you have a space?</h1>
         <h4>Submit your space for listing on our website</h4>
         <section class="info">
           <div class="basic-info">
-            <input type="text" placeholder="Name of space">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Space description"></textarea>
+            <input type="text" name="name" placeholder="Name of space" required>
+            <textarea name="description" id="" cols="30" rows="10" placeholder="Space description" required></textarea>
             <div class="facilities">
               <h3>Facilities</h3>
               <div class="checkbox-wrap">
@@ -45,12 +47,12 @@
                   <p>Flat Screen Tv</p>
                 </div>
                 <div class="checkbox-item">
-                  <input type="checkbox" name="restuarant" id="restuarant">
-                  <p>Restuarant</p>
+                  <input type="checkbox" name="restaurant" id="restuarant">
+                  <p>Restaurant</p>
                 </div>
                 <div class="checkbox-item">
                   <input type="checkbox" name="Ensuite Kitchenette" id="Ensuite Kitchenette">
-                  <p>Waiting room</p>
+                  <p>Ensuite Kitchenette</p>
                 </div>
                 
               </div>
@@ -64,13 +66,15 @@
           <div class="other">
             <div class="upload">
               <div class="img-block">
-                <i class="fas fa-images"></i>
+                <!-- <i class="fas fa-images"></i> -->
+                <img id="space-image">
               </div>
-              <button>Upload thumbnail</button>
+              <input type="file" name="image" id="img-upload" accept="image/*" onchange="previewImg(event);" required>
+              <!-- <button>Upload thumbnail</button> -->
             </div>
             <div class="select-item">
               <label for="capacity">Space capacity</label>
-              <select name="capacity" id="capacity">
+              <select name="capacity" id="capacity" required>
                 <option value="1-4">1-4</option>
                 <option value="5-9">5-9</option>
                 <option value="10-14">10-14</option>
@@ -81,30 +85,37 @@
             </div>
             
             <label for="price">Price</label>
-            <input type="text" placeholder="Price per hour(N)">
+            <input name="pricing" type="text" placeholder="Price per hour(N)" required>
             
           </div>
         </section>
         <section class="contact-info">
           <h2>Add Contact Information</h2>
-          <input type="text" placeholder="Add State">
-          <input type="text" placeholder="Add LGA">
-          <input type="text" placeholder="Add Street Address">
-          <input type="text" placeholder="Add Phone">
-          <input type="text" placeholder="Add Email">
+          <select name="state" id="state" required>
+            <option value="">Select a state</option>
+          </select>
+          <select name="lga" id="lga" required>
+            <option value="">Select L.G.A</option>
+          </select>
+          <input name="address" type="text" placeholder="Add Street Address" required>
+          <input name="telephone" type="text" placeholder="Add Phone" required>
+          <input name="email" type="text" placeholder="Add Email">
           Add Social Media Accounts
-          <input type="text" placeholder="Twitter">
-          <input type="text" placeholder="Instagram">
-          <input type="text" placeholder="Facebook">
-          <button id="submit"><a href="{% url 'spaces:register_space_done' %}">SUBMIT</a></button>
+          <input name="twitter" type="text" placeholder="Twitter">
+          <input name="instagram" type="text" placeholder="Instagram">
+          <input name="facebook" type="text" placeholder="Facebook">
+          <input type="submit" value="submit" id="submit">
         </section>
         
         
       </form>
+      <!-- <form action="" method="post">
+        {{ form }}
+      </form> -->
     </div>
   </div>
 {% endblock %}
 {% block domready %}
-<script src="{% static 'assets/js/index.js' %}"></script>
-<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+<script src="{% static 'assets/js/spaceowner.js' %}"></script>
+<script src="{% static 'assets/js/signin.js' %}"></script>
 {% endblock %}

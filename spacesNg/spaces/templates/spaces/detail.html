@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}{{ space.name }}{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+<!-- <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" /> -->
 <link rel="stylesheet" href="{% static 'assets/css/spacedetails.css' %}" />
 <!-- <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" /> -->
 {% endblock %}
@@ -26,93 +26,127 @@
         </li>
       </ul>
     </div>
+    <h4 class="space__details__caption">
+      {{ space.name }}
+    </h4>
     <div class="space__details__container">
-        <div class="space__details__image__container">
-            <div class="space__details__image">
-                <h4 class="space__details__caption">
-                    {{ space.name }}
-                </h4>
-                <img src="{{ space.image.url }}" alt="" >
+      <div class="space__details__image__container">
+        <div class="space__details__image">
+          <img src="{{ space.image.url }}" alt="" >
+        </div>
+        <div class="space__details__spaces__text">
+          <!-- <h4 class="space__details__caption">
+            HubOnze </h4> -->
+          <p class="space__details__spaces__text-content">
+              {{ space.description }}
+          </p>
+            <h5>Ratings</h5>
+            <div class="space__details__spaces__rating-container">
+              <h3>{{ space.rating }}<i class="fas fa-star"></i></h3>
             </div>
-        </div>   
-        <div class="space__details__spaces">
-            <div class="space__details__spaces__text">
-              <h4 class="space__details__caption">
-                {{ space.name }}
-            </h4>
-                <p class="space__details__spaces__text-content">
-                   {{ space.description }}
-                </p>
-
-                 <h5>Ratings</h5>
-                 <div class="space__details__spaces__rating-container"> <h3>{{ space.rating }}
-                     <i class="fas fa-star"></i>
-                     </h3>
-                 </div>
-            </div>
-            
-            <div class="space__details__spaces__location">
-               
-                <div class="space__details__spaces__location-container">
-                    <h4 class="space__details__spaces__location-heading">Contact Details</h4>
-                    <div class="space__details__space__contacts">  
-                        <p class="space__details__spaces__street" id="space-street">
-                          <i class="fa fa-map-marker" aria-hidden="true"></i>
-                           <span>{{ space.address }}, {{ space.lga }}, {{ space.state }}, Nigeria</span> </p>
-                          <p class="space-phone" ><i class="fas fa-phone-alt"></i> <a href="#" id="space-phone" >{{ space.telephone }}</a> </p>
-                        <p class="space-email"><i class="fas fa-envelope"></i><a href="#" id="space-email">{{ space.email }}</a> </p>
-                       
-                      <p class="app"><i class="fab fa-instagram"></i><a href="#" id="space-instagram">{{ space.instagram }}</a></p>
-                      <p class="app"><i class="fab fa-facebook"></i> <a href="#" id="space-fb">{{ space.facebook }}</a> </p>
-                      <p class="app"><i class="fab fa-twitter"></i><a href="#" id="space-twitter">{{ space.twitter }}</a> </p>
-                    </div>
-                    
-                </div>
-            </div>
-              <!--  -->
-               
-            
-              <!--  -->
-
-        </div> 
+        </div>
+        
+      </div>   
+      <div class="space__details__spaces">
+        <div class="space__details__spaces__location-container">
+          <h4 class="space__details__spaces__location-heading"><i class="fas fa-info-circle title-icon"></i> Contact Details</h4>
+          <div class="space__details__space__contacts">  
+              <p class="space__details__spaces__street" id="space-street">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                 <span>{{ space.address }}, {{ space.lga }}, {{ space.state }}, Nigeria</span> </p>
+                <p class="space-phone" ><i class="fas fa-phone-alt"></i> <a href="tel:{{ space.telephone }}" id="space-phone" >{{ space.telephone }}</a> </p>
+              <p class="space-email"><i class="fas fa-envelope"></i><a href="mailto:{{ space.email }}" id="space-email">{{ space.email }}</a> </p>
+             
+            <p class="app"><i class="fab fa-instagram"></i><a href="https://www.instagram.com/{{ sapce.instagram }}" id="space-instagram">{{ space.instagram }}</a></p>
+            <p class="app"><i class="fab fa-facebook"></i> <a href="#" id="space-fb">{{ space.facebook }}</a> </p>
+            <p class="app"><i class="fab fa-twitter"></i><a href="https://www.twitter.com/{{ space.twitter }}" id="space-twitter">{{ space.twitter }}</a> </p>
+          </div>
+          
+        </div>
         <div class="space__details__facilities">
-          <div class="space__details__facilities-container">
-            <div class="space__details__facilities-text">
-              <h4>Facilities:</h4>
-              <div>
-                <ul>
-                    {% for facility in space.facilities.all %}
+          <div class="space__details__facilities-text">
+            <h4>Facilities:</h4>
+            <ul>
+              {% for facility in space.facilities.all %}
                   <li>{{ facility }}</li> 
                   {% endfor %}
-                </ul>
-              </div>
-            </div>
-            <div class="space__details__facilities-second">
-
-              <div class="table__row">
-                <div class="table__column" >
-                  <h2>Capacity:</h2>
-                  <p>{{ space.capacity }}</p>
-                </div>
-                <div class="table__column">
-                  <h2>Price per hour:</h2>
-                  <p>N{{ space.pricing }}</p>
-                </div>
-              </div>
-
-            </div>
+            </ul>
           </div>
+          <div class="space__details__facilities-second">
+            <div class="table__row">
+              <div class="table__column" >
+                <h2><i class="fas fa-user-friends title-icon"></i> Capacity:</h2>
+                <p>{{ space.capacity }}</p>
+              </div>
+              <div class="table__column">
+                <h2><i class="fas fa-coins title-icon"></i> Price per hour:</h2>
+                <p>N{{ space.pricing }}</p>
+              </div>
+            </div>
 
-          <div class="space__details__facilities-map">
-            <img src="{% static 'assets/img/Rectangle 154.png' %}" alt="" id="space__details-map">
           </div>
 
           
-        </div>   
+        </div>
+      </div>    
     </div>
+    {% if similar_spaces.count > 2 %}
+    <div class="others-viewed">
+      <h1>People who viewed this also viewed</h1>
+      <div class="spaces-wrap">
+        {% for space in similar_spaces %}
+        <a href="{{ space.get_absolute_url }}">
+          <div class="spaces-item">
+            <img src="{{ space.image.url }}" alt="" />
+            <div class="space-item-text">
+              <p class="space-name">{{ space.name }}</p>
+              <p class="space-item-location">
+                <i class="fas fa-map-marker-alt"></i> {{ space.state }}, Nigeria.
+              </p>
+            </div>
+            <div class="ratings">
+              <p class="rating-value">{{ space.rating }}</p>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        <!-- <a href="#">
+          <div class="spaces-item">
+            <img src="assets/img/work-central.png" alt="" />
+            <div class="space-item-text">
+              <p class="space-name">Work Centre</p>
+              <p class="space-item-location">
+                <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria.
+              </p>
+            </div>
+            <div class="ratings">
+              <p class="rating-value">4.0</p>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="spaces-item">
+            <img src="assets/img/lead-space.png" alt="" />
+            <div class="space-item-text">
+              <p class="space-name">Leadspaces</p>
+              <p class="space-item-location">
+                <i class="fas fa-map-marker-alt"></i> Lagos, Nigeria.
+              </p>
+            </div>
+            <div class="ratings">
+              <p class="rating-value">4.4</p>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </a> -->
+      </div>
+    </div>
+    {% endif %}
 </div>  
 {% endblock %}
 {% block domready %}
-<script src="{% static 'assets/js/index.js' %}"></script>
-<!-- <script src="{% static 'assets/js/signin.js' %}"></script> -->
+<script src="{% static 'assets/js/spacedetails.js' %}"></script>
+<script src="{% static 'assets/js/signin.js' %}"></script>
 {% endblock %}

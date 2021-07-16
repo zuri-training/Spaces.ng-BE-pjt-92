@@ -9,7 +9,6 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
 class Spaces(models.Model):
-    ANY = 'ANY'
     FOUR = '1-4'
     NINE = '5-9'
     FOURTEEN = '10-14'
@@ -22,7 +21,6 @@ class Spaces(models.Model):
         ('published', 'Published'),
         )
     CAPACITY_CHOICES = [
-        (ANY, 'Any'),
         (FOUR, '1-4'),
         (NINE, '5-9'),
         (FOURTEEN, '10-14'),
@@ -34,9 +32,9 @@ class Spaces(models.Model):
     name = models.CharField(max_length=64)
     slug = models.SlugField(max_length=200, default='')
     description = models.TextField()
-    capacity = models.CharField(max_length=8, choices=CAPACITY_CHOICES, default=ANY)
+    capacity = models.CharField(max_length=8, choices=CAPACITY_CHOICES, default=FOUR)
     pricing = models.PositiveIntegerField()
-    image = models.ImageField(upload_to='images/%Y/%m/%d/')
+    image = models.ImageField(upload_to='images/%Y/%m/%d/', null=True, blank=True)
     state = models.CharField(max_length=64, default='')
     lga = models.CharField(max_length=64, default='')
     address = models.CharField(max_length=256, default='')
@@ -65,4 +63,19 @@ class Spaces(models.Model):
     
     def get_absolute_url(self):
         return reverse('spaces:space_detail', args=[self.slug])
-# class Facility(models.Model):
+
+
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=64)
+    email = models.EmailField(max_length=200)
+    telephone = models.CharField(max_length=32)
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Feedback"
+
+    def __str__(self):
+        return self.name

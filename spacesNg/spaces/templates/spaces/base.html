@@ -9,70 +9,69 @@
     <!-- <link rel="stylesheet" href="assets/css/slick.css"> -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'assets/css/base.css' %}" />
     {% block style %}{% endblock %}
-    <title>{% block title %}{% endblock %} | Spaces.NG</title>  
+    <title>{% block title %}{% endblock %} | Spaces.NG</title>
   </head>
   <body>
     <div class="header-components">
-      <header> 
+      <header>
         <div class="logo">
           <p class="logo-name"><a href="{% url 'spaces:index' %}"> Spaces.NG</a></p>
         </div>
         <div class="nav-wrap">
           <nav>
             <ul>
-              <li><a href="#"> About Us</li></a>
-              <li><a href="#"> Contact Us</li></a>
+              <li><a href="{% url 'spaces:aboutus' %}"> About Us</li></a>
+              <li><a href="{% url 'spaces:contactus' %}"> Contact Us</li></a>
               <button class="register-btn"><a href="{% url 'spaces:register_space' %}">Do you have a space?</a></button>
             </ul>
           </nav>
-          <div class="user" id = "user">   
+          <div class="user" id = "user">{% if request.user.is_authenticated %}<a><strong>{{ request.user.username | capfirst }}</strong>&nbsp;&nbsp;&nbsp;</a>{% endif %}   
             <i class="far fa-user-circle"></i>
             {% if request.user.is_authenticated %}
-            <ul class="dropdown">
-              <li><a href="#">Hello, {{ request.user.username | capfirst }}</a></li>
-              <li><a href="{% url 'account_password_change' %}">Change Password</a></li>
-              <li id="id_logout"><a href="#">Log Out</a></li>
-            </ul>
+              <ul class="dropdown">
+                <li><a href="{% url 'account_password_change' %}">Change Password</a></li>
+                <li id="id_logout"><a href="#">Log Out</a></li>
+              </ul>
             {% else %}
-            <ul class="dropdown">
-              <li><a href="{% url 'account_signup' %}">Sign up</a></li>
-              <li><a href="{% url 'account_login' %}">Sign in</a></li>
-            </ul>
+              <ul class="dropdown">
+                <li><a href="{% url 'account_signup' %}">Sign up</a></li>
+                <li><a href="{% url 'account_login' %}">Sign in</a></li>
+              </ul>
             {% endif %}
           </div>
           <div id="menu-icon">
             <div class="bar" id="bars" onclick="lockScroll();"></div>
-            <!-- <i class="far fa-user-circle"></i> -->
           </div>
         </div>
         
       </header>
       <div id = "mobile-nav">
         <ul id="mobile-nav-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="{% url 'spaces:aboutus' %}">About Us</a></li>
+          <li><a href="{% url 'spaces:contactus' %}">Contact Us</a></li>
           <li><a href="{% url 'spaces:register_space' %}">Register a Space</a></li>
           <li><a href="{% url 'spaces:dashboard' %}">Find a Space</a></li>
         </ul>
       </div>
-    </div>
+  </div>
     {% block content %}
     {% endblock %}
     {% if request.user.is_authenticated %}
-      <div class="modal-wrap" id="logout-modal">
-        <div class="modal">
-          <p>Are you sure you want to log out?</p>
-          <form action="{% url 'account_logout' %}" method="POST" id="logout-form">
-              {% csrf_token %}
-            <button class="modal__btn" type="submit">Yes, Log Out</button>
-            <button class="modal__btn close" id='close'>No</button>
-          </form>
-          <div class="modal-close">
-            <p>x</p>
-          </div>
+    <div class="modal-wrap" id="logout-modal">
+      <div class="modal">
+        <p>Are you sure you want to log out?</p>
+        <form action="{% url 'account_logout' %}" method="POST" id="logout-form">
+          {% csrf_token %}
+          <input type="submit" value="YES, LOG OUT" id="logout">
+          <input type="submit" value="No" id="cancel-logout">
+        </form>
+        <div class="modal-close">
+          <p>x</p>
         </div>
       </div>
+    </div>
       {% endif %}
     <div class="footer-component">
       <footer>
@@ -82,7 +81,7 @@
             <div class="contact">
               <p><i class="fas fa-envelope"></i>spacesng@gmail.com</p>
               <p class="bold-icon"><i class="fas fa-phone-alt"></i>08050040020</p>
-              <p class="app"><i class="fab fa-android"></i><a href=""> Download our Android app</a></p>
+              <p class="app"><i class="fab fa-android"></i><a href="#"> Download our Android app</a></p>
             <p class="app"><i class="fab fa-apple"></i>Download our IOS app</p>
             </div>
             
@@ -90,8 +89,9 @@
           <div class="site-links">
             <h3>Site Links</h3>
             <ul>
-              <li><i class="fas fa-arrow-alt-circle-right"></i>About Us</li>
-              <li><i class="fas fa-arrow-alt-circle-right"></i>Contact Us</li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i><a href="{% url 'spaces:aboutus' %}">About Us</a></li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i><a href="{% url 'spaces:contactus' %}">Contact Us</a></li>
+              <li><i class="fas fa-arrow-alt-circle-right"></i><a href="/api/docs" target="_blank">API documentation</a></li>
             </ul>
           </div>
           <div class="legal">
@@ -120,6 +120,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{% static 'assets/js/base.js' %}"></script>
     {% block domready %}
     {% endblock %}
   </body>

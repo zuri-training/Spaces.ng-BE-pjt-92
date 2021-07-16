@@ -1,0 +1,126 @@
+{% extends 'spaces/base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+{% block style %}
+<!-- <link rel="stylesheet" href="{% static 'assets/css/signin.css' %}" /> -->
+<link rel="stylesheet" href="{% static 'assets/css/aboutus.css' %}" />{% endblock %}
+{% block content %}
+<div class="parent-container">
+    <div>
+      <div class="topnav">
+          <ul >
+            <li><a href="{% url 'spaces:index' %}" class="nav">Home</a></li>
+            <li><a href="#" class="nav">About Us</a></li>
+          </ul>
+      </div>
+    </div>
+    <section class="section-1">
+      <h1 class="title">Spaces.NG</h1>
+      <div class="subsection">
+        <div class="left">
+            <p class="mb">We are committed to helping people find an efficient and reliable-working space around their location.</p>
+            <p>We offer a wealth of advantages for self-starters, including networking opportunities, inspiration or mentorship, wellness and enjoyment of personal space with professional engagement.</p>
+        </div>
+      </div>
+      <img src="{% static 'assets/img/Rectangle 156.png' %}" alt="" class="img">
+    </section>
+      <!-- <div class="border"> -->
+    <div class="about-wrap">
+      <section class="section-c">
+        <div class="reg-spaces">
+          <!-- <div class="section-b">
+            <p class="space-num">450 </p>
+            <span>Registered Spaces</span>
+          </div> -->
+          <img src="{% static 'assets/img/Rectangle 156.png' %}" alt="" class="img-2">
+        </div>
+        
+        <div class="section-3">
+          <h2 class="subhead-2 mb">Our Reach</h2>
+          <p class="subinfo mb">We have 450 tech spaces across Nigeria are registered on spaces.ng. Clients have found reasons to work with us over the past 5 years.</p>
+          <p class="subinfo mb">Founded in 2015, our reputation speaks volumes. We have had successes over the years, as many clients, both individual and corporate, found the best tech spaces to collaborate and work using our platform.</p>  
+          <p><a href="#">Contact Us <i class="fas fa-arrow-right"></i></a></p>
+        </div>
+      </section> 
+      <div class="section-d">
+        <section class="section-4">
+          <div>
+            <h2 class="subhead-3">Meet the Executives</h2>
+          </div>
+          <div class="row-y">
+            <div class="card-y">
+              <div class="card-image">
+                <img src="{% static 'assets/img/Rectangle 158.png' %}" alt="" class="img-exec">
+              </div>
+              <div class="card-body">
+                <div class="card-name"> Wale Esho</div>
+                <div class="card-title">CEO, Spaces.NG</div>
+                <div class="card-icon">
+                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-facebook"></i> 
+                  <i class="fab fa-twitter"></i>
+                </div>
+              </div>
+            </div>
+            <div class="card-y">
+              <div class="card-image">
+                <img src="{% static 'assets/img/Rectangle 159.png' %}" alt="" class="img-exec">
+              </div>
+              <div class="card-body">
+                <div class="card-name"> Kojo Tufena</div>
+                <div class="card-title">CTO, Spaces.NG</div>
+                <div class="card-icon">
+                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-facebook"></i> 
+                  <i class="fab fa-twitter"></i>
+                </div>
+              </div> 
+            </div>
+            <div class="card-y">
+              <div class="card-image">
+                <img src="{% static 'assets/img/Rectangle 160.png' %}" alt="" class="img-exec">
+              </div>
+              <div class="card-body">
+                <div class="card-name"> Emeka Madu</div>
+                <div class="card-title">Legal Advicer, Spaces.NG</div>
+                <div class="card-icon">
+                  <i class="fab fa-instagram"></i>
+                  <i class="fab fa-facebook"></i> 
+          
+                  <i class="fab fa-twitter"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="section-e">
+        <section class="section-5">
+          <div class="subhead-4">
+            <h2 class="subhead-part mb">Our Partners</h2>
+          </div>
+          <div class="row-x">
+            <div class="logo-x">
+              <div class="logo-img">
+                <img src="{% static 'assets/img/zuri.png' %}" alt="" class="img-logo">
+              </div>
+            </div>
+            <div class="logo-x">
+              <div class="logo-img">
+                <img src="{% static 'assets/img/i4g.png' %}" alt="" class="img-logo">   
+              </div>
+            </div>
+            <div class="logo-x">
+              <div class="logo-img">
+                <img src="{% static 'assets/img/unnamed 1.png' %}" alt="" class="img-logo">  
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>  
+    </div>
+  </div>
+{% endblock %}
+{% block domready %}
+<script src="{% static 'assets/js/signin.js' %}"></script>
+{% endblock %}
